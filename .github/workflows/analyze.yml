@@ -33,7 +33,7 @@ jobs:
     name: Validate Data Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check data files exist
         run: |
@@ -94,7 +94,7 @@ jobs:
       alert_needed: ${{ steps.analyze.outputs.alert_needed }}
       summary: ${{ steps.analyze.outputs.summary }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -216,7 +216,7 @@ jobs:
     needs: run-analysis
     if: needs.run-analysis.outputs.alert_needed == 'true' && github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Create or update GitHub Issue
         uses: actions/github-script@v7
