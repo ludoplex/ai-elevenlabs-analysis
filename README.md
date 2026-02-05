@@ -16,9 +16,29 @@ AI music generation models disproportionately gravitate toward void/dissolution/
 
 ## Status
 - [x] Initial song analysis complete
+- [x] Deep-dive multi-dimensional analysis complete
+- [x] Computational/transformer mechanics analysis complete
+- [x] C analysis tool (transformer-pattern-analyzer) built and validated
 - [ ] Additional songs from ElevenLabs library
 - [ ] Controlled experiment (vary darkness cues in prompts)
 - [ ] Baseline corpus from human-authored prog rock
+- [ ] Cross-platform comparison (Suno, Udio)
+
+## Analysis Reports
+| Report | Focus |
+|--------|-------|
+| `analysis/initial-report.md` | Void cluster frequency statistics |
+| `analysis/elevenlabs-deep-dive.md` | Multi-dimensional: lexical diversity, sentiment, rhyme, syntax |
+| `analysis/computational-analysis.md` | **Transformer mechanics**: attention, entropy, burstiness, training bias |
+| `analysis/methodology.md` | Pre-specified cluster definitions, baselines, limitations |
+
+## Tools
+| Tool | Language | Purpose |
+|------|----------|---------|
+| `scripts/analyze.py` | Python | Void cluster frequency analyzer |
+| `scripts/deep_dive_analyzer.py` | Python | Multi-dimensional lyric analyzer |
+| `scripts/void-cluster-analyzer.c` | C (Cosmopolitan) | Portable void cluster analyzer |
+| `scripts/transformer-pattern-analyzer.c` | C (Cosmopolitan) | **Transformer generation signature detector** |
 
 ## Team
 | Agent | Role |

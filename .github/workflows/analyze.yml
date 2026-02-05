@@ -1,0 +1,285 @@
+name: Void Cluster Analysis
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'data/**'
+      - 'scripts/**'
+      - 'analysis/**'
+  pull_request:
+    branches: [master, main]
+    paths:
+      - 'data/**'
+      - 'scripts/**'
+      - 'analysis/**'
+  workflow_dispatch:
+    inputs:
+      baseline:
+        description: 'Baseline proportion (e.g. 0.05 for dark prog)'
+        required: false
+        default: '0.05'
+      z_threshold:
+        description: 'Z-score threshold for alerts'
+        required: false
+        default: '3.0'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  validate-data:
+    name: Validate Data Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check data files exist
+        run: |
+          echo "::group::Data file inventory"
+          if [ ! -d data ]; then
+            echo "::error::No data/ directory found"
+            exit 1
+          fi
+          file_count=$(find data -name '*.md' -o -name '*.txt' -o -name '*.json' | wc -l)
+          echo "Found $file_count data files"
+          find data -type f | head -50
+          echo "::endgroup::"
+
+          if [ "$file_count" -eq 0 ]; then
+            echo "::error::No data files found in data/"
+            exit 1
+          fi
+
+      - name: Validate markdown structure
+        run: |
+          echo "::group::Markdown validation"
+          errors=0
+          for f in data/*.md; do
+            [ -f "$f" ] || continue
+            echo "Checking $f..."
+
+            # Must contain a Lyrics section
+            if ! grep -qi "lyrics\|verse\|chorus" "$f"; then
+              echo "::warning file=$f::No lyrics section detected"
+            fi
+
+            # Check for non-UTF8 encoding issues
+            if ! iconv -f utf-8 -t utf-8 "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::File is not valid UTF-8"
+              errors=$((errors + 1))
+            fi
+
+            # Check file is not empty
+            if [ ! -s "$f" ]; then
+              echo "::error file=$f::File is empty"
+              errors=$((errors + 1))
+            fi
+          done
+          echo "::endgroup::"
+
+          if [ "$errors" -gt 0 ]; then
+            echo "::error::$errors validation error(s) found"
+            exit 1
+          fi
+          echo "✅ All data files valid"
+
+  run-analysis:
+    name: Statistical Analysis
+    runs-on: ubuntu-latest
+    needs: validate-data
+    outputs:
+      max_z_score: ${{ steps.analyze.outputs.max_z_score }}
+      alert_needed: ${{ steps.analyze.outputs.alert_needed }}
+      summary: ${{ steps.analyze.outputs.summary }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run void cluster analysis on all data files
+        id: analyze
+        env:
+          Z_THRESHOLD: ${{ github.event.inputs.z_threshold || '3.0' }}
+          BASELINE: ${{ github.event.inputs.baseline || '0.05' }}
+        run: |
+          echo "::group::Analysis Results"
+          max_z=0
+          alert_needed=false
+          summary_lines=""
+
+          for datafile in data/*.md data/*.txt; do
+            [ -f "$datafile" ] || continue
+            echo ""
+            echo "═══════════════════════════════════════"
+            echo "Analyzing: $datafile"
+            echo "═══════════════════════════════════════"
+
+            # Run analysis and capture JSON output
+            output=$(python scripts/analyze.py "$datafile" --baseline "$BASELINE" --format json 2>&1) || {
+              echo "::warning file=$datafile::Analysis script returned non-zero exit code"
+              continue
+            }
+
+            # Extract z-score for dark_prog baseline (primary comparison)
+            z_score=$(echo "$output" | python3 -c "
+          import sys, json
+          try:
+              data = json.load(sys.stdin)
+              tests = data.get('statistical_tests', {})
+              # Check dark_prog first, then custom, then first available
+              for key in ['dark_prog', 'custom', next(iter(tests), '')]:
+                  if key in tests:
+                      print(tests[key]['z_score'])
+                      break
+              else:
+                  print('0')
+          except:
+              print('0')
+          ")
+
+            void_pct=$(echo "$output" | python3 -c "
+          import sys, json
+          try:
+              data = json.load(sys.stdin)
+              print(data['void_cluster']['percent'])
+          except:
+              print('0')
+          ")
+
+            total_tokens=$(echo "$output" | python3 -c "
+          import sys, json
+          try:
+              data = json.load(sys.stdin)
+              print(data['total_tokens'])
+          except:
+              print('0')
+          ")
+
+            echo "  Tokens: $total_tokens | Void: ${void_pct}% | Z-score: $z_score"
+            summary_lines="${summary_lines}| $(basename "$datafile") | $total_tokens | ${void_pct}% | $z_score |
+          "
+
+            # Track maximum z-score
+            is_higher=$(python3 -c "print('yes' if float('${z_score}') > float('${max_z}') else 'no')")
+            if [ "$is_higher" = "yes" ]; then
+              max_z="$z_score"
+            fi
+
+            # Check threshold
+            exceeds=$(python3 -c "print('yes' if float('${z_score}') > float('${Z_THRESHOLD}') else 'no')")
+            if [ "$exceeds" = "yes" ]; then
+              echo "::warning file=$datafile::Z-score $z_score exceeds threshold $Z_THRESHOLD"
+              alert_needed=true
+            fi
+
+            # Also print the markdown report
+            python scripts/analyze.py "$datafile" --baseline "$BASELINE" --format markdown || true
+          done
+          echo "::endgroup::"
+
+          # Set outputs
+          echo "max_z_score=$max_z" >> "$GITHUB_OUTPUT"
+          echo "alert_needed=$alert_needed" >> "$GITHUB_OUTPUT"
+
+          # Multi-line summary
+          {
+            echo 'summary<<EOF'
+            echo "| File | Tokens | Void % | Z-score |"
+            echo "|------|--------|--------|---------|"
+            echo "$summary_lines"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run deep dive analyzer
+        run: |
+          echo "::group::Deep Dive Analysis"
+          python scripts/deep_dive_analyzer.py 2>&1 || echo "::warning::Deep dive analyzer encountered issues"
+          echo "::endgroup::"
+
+      - name: Upload analysis artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-results-${{ github.sha }}
+          path: |
+            analysis/
+            data/
+          retention-days: 90
+
+  alert-outliers:
+    name: Alert on Statistical Outliers
+    runs-on: ubuntu-latest
+    needs: run-analysis
+    if: needs.run-analysis.outputs.alert_needed == 'true' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create or update GitHub Issue
+        uses: actions/github-script@v7
+        env:
+          MAX_Z: ${{ needs.run-analysis.outputs.max_z_score }}
+          SUMMARY: ${{ needs.run-analysis.outputs.summary }}
+          Z_THRESHOLD: ${{ github.event.inputs.z_threshold || '3.0' }}
+        with:
+          script: |
+            const title = `🚨 Statistical Outlier Detected: Z-score ${process.env.MAX_Z}`;
+            const body = `## Void Cluster Analysis Alert
+
+            **Commit:** ${context.sha.substring(0, 7)}
+            **Branch:** ${context.ref}
+            **Max Z-score:** ${process.env.MAX_Z} (threshold: ${process.env.Z_THRESHOLD})
+            **Run:** [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+
+            ### Results Summary
+
+            ${process.env.SUMMARY}
+
+            ### Interpretation
+
+            A Z-score > 3.0 indicates the void/dissolution semantic cluster appears at a rate
+            significantly exceeding the dark progressive rock baseline (5%). This is statistically
+            significant at p < 0.001.
+
+            ### Next Steps
+
+            - [ ] Review the new data for methodology compliance
+            - [ ] Check if prompt contained darkness cues (confound)
+            - [ ] Compare against additional baselines
+            - [ ] Update analysis report if findings are confirmed
+
+            ---
+            *Auto-generated by [analyze.yml](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/blob/master/.github/workflows/analyze.yml)*`;
+
+            // Check for existing open alert issues
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'outlier-alert',
+              per_page: 5,
+            });
+
+            if (issues.data.length > 0) {
+              // Update existing issue with a comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: body,
+              });
+              console.log(`Updated existing issue #${issues.data[0].number}`);
+            } else {
+              // Create new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['outlier-alert', 'automated'],
+              });
+              console.log('Created new outlier alert issue');
+            }

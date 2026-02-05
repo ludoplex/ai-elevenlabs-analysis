@@ -1,0 +1,101 @@
+name: Lint & Code Quality
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'scripts/**'
+      - '*.py'
+      - '.github/workflows/lint.yml'
+  pull_request:
+    branches: [master, main]
+    paths:
+      - 'scripts/**'
+      - '*.py'
+      - '.github/workflows/lint.yml'
+
+jobs:
+  python-lint:
+    name: Python Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install linters
+        run: pip install ruff mypy
+
+      - name: Ruff lint
+        run: |
+          echo "::group::Ruff Lint"
+          ruff check scripts/ --output-format=github
+          echo "::endgroup::"
+
+      - name: Ruff format check
+        run: |
+          echo "::group::Ruff Format"
+          ruff format --check scripts/ || {
+            echo "::warning::Code formatting issues found. Run 'ruff format scripts/' to fix."
+            exit 1
+          }
+          echo "::endgroup::"
+
+      - name: Type checking (informational)
+        continue-on-error: true
+        run: |
+          echo "::group::Mypy"
+          mypy scripts/*.py --ignore-missing-imports --no-error-summary 2>&1 || true
+          echo "::endgroup::"
+
+  c-lint:
+    name: C Linting
+    runs-on: ubuntu-latest
+    if: hashFiles('scripts/*.c') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check C compilation
+        run: |
+          echo "::group::GCC Compile Check"
+          for f in scripts/*.c; do
+            [ -f "$f" ] || continue
+            echo "Compiling $f..."
+            gcc -Wall -Wextra -Wpedantic -fsyntax-only "$f" || {
+              echo "::error file=$f::Compilation failed"
+              exit 1
+            }
+            echo "  ✅ $f compiles cleanly"
+          done
+          echo "::endgroup::"
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !.github/**
+        continue-on-error: true
+
+  yaml-lint:
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Lint YAML files
+        run: |
+          yamllint -d "{extends: relaxed, rules: {line-length: {max: 150}}}" \
+            .github/workflows/*.yml .github/dependabot.yml 2>&1 || true

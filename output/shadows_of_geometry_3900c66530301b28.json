@@ -1,0 +1,849 @@
+{
+  "pipeline_version": "0.2.0",
+  "collected_at": "2026-02-05T04:40:18.249372+00:00",
+  "content_hash": "3900c66530301b28",
+  "platform": "elevenlabs",
+  "model": "unknown",
+  "metadata": {
+    "source_file": "data\\shadows-of-geometry.md",
+    "title": "Shadows of Geometry",
+    "style": "experimental progressive rock, theatrical, dark emotive female vocals, complex rhythms, unconventional time signatures, avant-garde, mathematical patterns",
+    "url": "https://elevenlabs.io/app/music/project/lJFuvAKToJ9Zf1Yq6qYC"
+  },
+  "tokens": {
+    "total": 192,
+    "unique": 110,
+    "frequencies": {
+      "in": 16,
+      "the": 11,
+      "me": 6,
+      "we": 6,
+      "of": 4,
+      "into": 4,
+      "and": 4,
+      "our": 4,
+      "bleed": 3,
+      "every": 3,
+      "line": 3,
+      "my": 3,
+      "fractured": 3,
+      "fracture": 2,
+      "time": 2,
+      "patterns": 2,
+      "to": 2,
+      "bends": 2,
+      "shadows": 2,
+      "reason": 2,
+      "call": 2,
+      "ghost": 2,
+      "broken": 2,
+      "rhyme": 2,
+      "carry": 2,
+      "across": 2,
+      "collide": 2,
+      "glow": 2,
+      "lose": 2,
+      "control": 2,
+      "numbers": 2,
+      "low": 2,
+      "edges": 2,
+      "night": 2,
+      "find": 2,
+      "truth": 2,
+      "twisted": 2,
+      "light": 2,
+      "angles": 1,
+      "void": 1,
+      "whispers": 1,
+      "vertices": 1,
+      "shadow": 1,
+      "am": 1,
+      "lost": 1,
+      "counting": 1,
+      "beats": 1,
+      "beneath": 1,
+      "skin": 1,
+      "spiral": 1,
+      "draw": 1,
+      "heart": 1,
+      "shifting": 1,
+      "frames": 1,
+      "chase": 1,
+      "echoes": 1,
+      "your": 1,
+      "name": 1,
+      "tangled": 1,
+      "polyrhythmic": 1,
+      "plea": 1,
+      "breaking": 1,
+      "rules": 1,
+      "set": 1,
+      "free": 1,
+      "measure": 1,
+      "until": 1,
+      "logic": 1,
+      "finally": 1,
+      "ends": 1,
+      "hear": 1,
+      "pulse": 1,
+      "that": 1,
+      "never": 1,
+      "rests": 1,
+      "dance": 1,
+      "inside": 1,
+      "chest": 1,
+      "threads": 1,
+      "start": 1,
+      "fray": 1,
+      "dissolve": 1,
+      "drift": 1,
+      "away": 1,
+      "unequal": 1,
+      "becomes": 1,
+      "cage": 1,
+      "step": 1,
+      "through": 1,
+      "unaligned": 1,
+      "whisper": 1,
+      "left": 1,
+      "behind": 1,
+      "dissect": 1,
+      "silence": 1,
+      "mind": 1,
+      "gravity": 1,
+      "sign": 1,
+      "rituals": 1,
+      "what": 1
+    }
+  },
+  "lexical_metrics": {
+    "total_tokens": 192,
+    "unique_types": 110,
+    "type_token_ratio": 0.5729,
+    "hapax_legomena": 72,
+    "hapax_ratio": 0.6545,
+    "dis_legomena": 25,
+    "yules_k": 145.94,
+    "brunets_w": 10.41,
+    "honores_r": 1521.91,
+    "simpsons_diversity": 0.9853,
+    "frequency_spectrum": {
+      "1": 72,
+      "2": 25,
+      "3": 5,
+      "4": 4,
+      "6": 2,
+      "11": 1,
+      "16": 1
+    }
+  },
+  "semantic_clusters": {
+    "void_dissolution": {
+      "description": "Void, emptiness, dissolution, darkness semantic field",
+      "count": 30,
+      "proportion": 0.15625,
+      "percent": 15.62,
+      "tier_breakdown": {
+        "direct": 1,
+        "semantic_neighbors": 29
+      },
+      "terms": {
+        "bleed": 3,
+        "fractured": 3,
+        "fracture": 2,
+        "shadows": 2,
+        "ghost": 2,
+        "edges": 2,
+        "night": 2,
+        "twisted": 2,
+        "void": 1,
+        "whispers": 1,
+        "shadow": 1,
+        "lost": 1,
+        "fray": 1,
+        "dissolve": 1,
+        "drift": 1,
+        "cage": 1,
+        "whisper": 1,
+        "silence": 1,
+        "chaos": 1,
+        "vanish": 1
+      }
+    },
+    "mathematics_geometry": {
+      "description": "Mathematical, geometric, and structural concepts",
+      "count": 18,
+      "proportion": 0.09375,
+      "percent": 9.38,
+      "tier_breakdown": {
+        "related": 18
+      },
+      "terms": {
+        "line": 3,
+        "patterns": 2,
+        "numbers": 2,
+        "angles": 1,
+        "vertices": 1,
+        "counting": 1,
+        "spiral": 1,
+        "polyrhythmic": 1,
+        "measure": 1,
+        "logic": 1,
+        "unequal": 1,
+        "sign": 1,
+        "vertex": 1,
+        "signs": 1
+      }
+    },
+    "embodiment": {
+      "description": "Body, physicality, sensation",
+      "count": 6,
+      "proportion": 0.03125,
+      "percent": 3.12,
+      "tier_breakdown": {
+        "direct": 1,
+        "related": 5
+      },
+      "terms": {
+        "skin": 1,
+        "heart": 1,
+        "pulse": 1,
+        "chest": 1,
+        "mind": 1,
+        "minds": 1
+      }
+    },
+    "transcendence": {
+      "description": "Transcendence, cosmic, spiritual elevation",
+      "count": 0,
+      "proportion": 0.0,
+      "percent": 0.0,
+      "tier_breakdown": {},
+      "terms": {}
+    },
+    "control_agency": {
+      "description": "Control, power, agency vs. helplessness",
+      "count": 16,
+      "proportion": 0.083333,
+      "percent": 8.33,
+      "tier_breakdown": {
+        "loss_of_control": 9,
+        "control": 7
+      },
+      "terms": {
+        "reason": 2,
+        "broken": 2,
+        "collide": 2,
+        "lose": 2,
+        "control": 2,
+        "tangled": 1,
+        "breaking": 1,
+        "rules": 1,
+        "unaligned": 1,
+        "gravity": 1,
+        "rituals": 1
+      }
+    },
+    "_meta": {
+      "total_tokens": 192,
+      "total_clustered": 70,
+      "clustered_proportion": 0.364583,
+      "unclustered_count": 122
+    }
+  },
+  "section_clusters": {
+    "Intro": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 6,
+        "proportion": 0.333333,
+        "percent": 33.33,
+        "tier_breakdown": {
+          "direct": 1,
+          "semantic_neighbors": 5
+        },
+        "terms": {
+          "void": 1,
+          "whispers": 1,
+          "fracture": 1,
+          "bleed": 1,
+          "shadow": 1,
+          "lost": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 3,
+        "proportion": 0.166667,
+        "percent": 16.67,
+        "tier_breakdown": {
+          "related": 3
+        },
+        "terms": {
+          "angles": 1,
+          "vertices": 1,
+          "line": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "_meta": {
+        "total_tokens": 18,
+        "total_clustered": 9,
+        "clustered_proportion": 0.5,
+        "unclustered_count": 9
+      }
+    },
+    "Verse 1": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 1,
+        "proportion": 0.025641,
+        "percent": 2.56,
+        "tier_breakdown": {
+          "semantic_neighbors": 1
+        },
+        "terms": {
+          "fractured": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 6,
+        "proportion": 0.153846,
+        "percent": 15.38,
+        "tier_breakdown": {
+          "related": 6
+        },
+        "terms": {
+          "counting": 1,
+          "spiral": 1,
+          "patterns": 1,
+          "polyrhythmic": 1,
+          "measure": 1,
+          "logic": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 2,
+        "proportion": 0.051282,
+        "percent": 5.13,
+        "tier_breakdown": {
+          "direct": 1,
+          "related": 1
+        },
+        "terms": {
+          "skin": 1,
+          "heart": 1
+        }
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 3,
+        "proportion": 0.076923,
+        "percent": 7.69,
+        "tier_breakdown": {
+          "loss_of_control": 2,
+          "control": 1
+        },
+        "terms": {
+          "tangled": 1,
+          "breaking": 1,
+          "rules": 1
+        }
+      },
+      "_meta": {
+        "total_tokens": 39,
+        "total_clustered": 12,
+        "clustered_proportion": 0.307692,
+        "unclustered_count": 27
+      }
+    },
+    "Pre-Chorus": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 5,
+        "proportion": 0.185185,
+        "percent": 18.52,
+        "tier_breakdown": {
+          "semantic_neighbors": 5
+        },
+        "terms": {
+          "shadows": 1,
+          "fray": 1,
+          "dissolve": 1,
+          "drift": 1,
+          "cage": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 1,
+        "proportion": 0.037037,
+        "percent": 3.7,
+        "tier_breakdown": {
+          "related": 1
+        },
+        "terms": {
+          "unequal": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 2,
+        "proportion": 0.074074,
+        "percent": 7.41,
+        "tier_breakdown": {
+          "related": 2
+        },
+        "terms": {
+          "pulse": 1,
+          "chest": 1
+        }
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 1,
+        "proportion": 0.037037,
+        "percent": 3.7,
+        "tier_breakdown": {
+          "control": 1
+        },
+        "terms": {
+          "reason": 1
+        }
+      },
+      "_meta": {
+        "total_tokens": 27,
+        "total_clustered": 9,
+        "clustered_proportion": 0.333333,
+        "unclustered_count": 18
+      }
+    },
+    "Chorus": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 6,
+        "proportion": 0.1875,
+        "percent": 18.75,
+        "tier_breakdown": {
+          "semantic_neighbors": 6
+        },
+        "terms": {
+          "ghost": 1,
+          "fractured": 1,
+          "edges": 1,
+          "bleed": 1,
+          "night": 1,
+          "twisted": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 2,
+        "proportion": 0.0625,
+        "percent": 6.25,
+        "tier_breakdown": {
+          "related": 2
+        },
+        "terms": {
+          "line": 1,
+          "numbers": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 4,
+        "proportion": 0.125,
+        "percent": 12.5,
+        "tier_breakdown": {
+          "loss_of_control": 3,
+          "control": 1
+        },
+        "terms": {
+          "broken": 1,
+          "collide": 1,
+          "lose": 1,
+          "control": 1
+        }
+      },
+      "_meta": {
+        "total_tokens": 32,
+        "total_clustered": 12,
+        "clustered_proportion": 0.375,
+        "unclustered_count": 20
+      }
+    },
+    "Bridge": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 4,
+        "proportion": 0.142857,
+        "percent": 14.29,
+        "tier_breakdown": {
+          "semantic_neighbors": 4
+        },
+        "terms": {
+          "whisper": 1,
+          "silence": 1,
+          "fracture": 1,
+          "chaos": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 2,
+        "proportion": 0.071429,
+        "percent": 7.14,
+        "tier_breakdown": {
+          "related": 2
+        },
+        "terms": {
+          "patterns": 1,
+          "sign": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 1,
+        "proportion": 0.035714,
+        "percent": 3.57,
+        "tier_breakdown": {
+          "related": 1
+        },
+        "terms": {
+          "mind": 1
+        }
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 4,
+        "proportion": 0.142857,
+        "percent": 14.29,
+        "tier_breakdown": {
+          "loss_of_control": 1,
+          "control": 3
+        },
+        "terms": {
+          "unaligned": 1,
+          "reason": 1,
+          "gravity": 1,
+          "rituals": 1
+        }
+      },
+      "_meta": {
+        "total_tokens": 28,
+        "total_clustered": 11,
+        "clustered_proportion": 0.392857,
+        "unclustered_count": 17
+      }
+    },
+    "Chorus 2": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 6,
+        "proportion": 0.1875,
+        "percent": 18.75,
+        "tier_breakdown": {
+          "semantic_neighbors": 6
+        },
+        "terms": {
+          "ghost": 1,
+          "fractured": 1,
+          "edges": 1,
+          "bleed": 1,
+          "night": 1,
+          "twisted": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 2,
+        "proportion": 0.0625,
+        "percent": 6.25,
+        "tier_breakdown": {
+          "related": 2
+        },
+        "terms": {
+          "line": 1,
+          "numbers": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 4,
+        "proportion": 0.125,
+        "percent": 12.5,
+        "tier_breakdown": {
+          "loss_of_control": 3,
+          "control": 1
+        },
+        "terms": {
+          "broken": 1,
+          "collide": 1,
+          "lose": 1,
+          "control": 1
+        }
+      },
+      "_meta": {
+        "total_tokens": 32,
+        "total_clustered": 12,
+        "clustered_proportion": 0.375,
+        "unclustered_count": 20
+      }
+    },
+    "Outro": {
+      "void_dissolution": {
+        "description": "Void, emptiness, dissolution, darkness semantic field",
+        "count": 2,
+        "proportion": 0.125,
+        "percent": 12.5,
+        "tier_breakdown": {
+          "semantic_neighbors": 2
+        },
+        "terms": {
+          "shadows": 1,
+          "vanish": 1
+        }
+      },
+      "mathematics_geometry": {
+        "description": "Mathematical, geometric, and structural concepts",
+        "count": 2,
+        "proportion": 0.125,
+        "percent": 12.5,
+        "tier_breakdown": {
+          "related": 2
+        },
+        "terms": {
+          "vertex": 1,
+          "signs": 1
+        }
+      },
+      "embodiment": {
+        "description": "Body, physicality, sensation",
+        "count": 1,
+        "proportion": 0.0625,
+        "percent": 6.25,
+        "tier_breakdown": {
+          "related": 1
+        },
+        "terms": {
+          "minds": 1
+        }
+      },
+      "transcendence": {
+        "description": "Transcendence, cosmic, spiritual elevation",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "control_agency": {
+        "description": "Control, power, agency vs. helplessness",
+        "count": 0,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "tier_breakdown": {},
+        "terms": {}
+      },
+      "_meta": {
+        "total_tokens": 16,
+        "total_clustered": 5,
+        "clustered_proportion": 0.3125,
+        "unclustered_count": 11
+      }
+    }
+  },
+  "structural_metrics": {
+    "total_lines": 38,
+    "total_sections": 7,
+    "avg_words_per_line": 5.05,
+    "std_words_per_line": 0.79,
+    "cv_words_per_line": 0.1569,
+    "section_stats": {
+      "Intro": {
+        "line_count": 4,
+        "token_count": 18,
+        "words_per_line": [
+          6,
+          3,
+          4,
+          5
+        ],
+        "avg_words_per_line": 4.5,
+        "avg_word_length": 4.44
+      },
+      "Verse 1": {
+        "line_count": 8,
+        "token_count": 39,
+        "words_per_line": [
+          5,
+          5,
+          5,
+          5,
+          3,
+          6,
+          5,
+          5
+        ],
+        "avg_words_per_line": 4.88,
+        "avg_word_length": 5.0
+      },
+      "Pre-Chorus": {
+        "line_count": 5,
+        "token_count": 27,
+        "words_per_line": [
+          6,
+          5,
+          6,
+          5,
+          5
+        ],
+        "avg_words_per_line": 5.4,
+        "avg_word_length": 4.59
+      },
+      "Chorus": {
+        "line_count": 6,
+        "token_count": 32,
+        "words_per_line": [
+          6,
+          5,
+          5,
+          5,
+          5,
+          6
+        ],
+        "avg_words_per_line": 5.33,
+        "avg_word_length": 4.34
+      },
+      "Bridge": {
+        "line_count": 6,
+        "token_count": 28,
+        "words_per_line": [
+          4,
+          4,
+          6,
+          4,
+          5,
+          5
+        ],
+        "avg_words_per_line": 4.67,
+        "avg_word_length": 4.86
+      },
+      "Chorus 2": {
+        "line_count": 6,
+        "token_count": 32,
+        "words_per_line": [
+          6,
+          5,
+          5,
+          5,
+          5,
+          6
+        ],
+        "avg_words_per_line": 5.33,
+        "avg_word_length": 4.34
+      },
+      "Outro": {
+        "line_count": 3,
+        "token_count": 16,
+        "words_per_line": [
+          6,
+          4,
+          6
+        ],
+        "avg_words_per_line": 5.33,
+        "avg_word_length": 4.06
+      }
+    }
+  },
+  "sections": [
+    "Intro",
+    "Verse 1",
+    "Pre-Chorus",
+    "Chorus",
+    "Bridge",
+    "Chorus 2",
+    "Outro"
+  ]
+}
