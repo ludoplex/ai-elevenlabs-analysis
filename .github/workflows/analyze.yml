@@ -202,7 +202,7 @@ jobs:
           echo "::endgroup::"
 
       - name: Upload analysis artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: analysis-results-${{ github.sha }}
           path: |
